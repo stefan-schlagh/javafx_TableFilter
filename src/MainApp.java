@@ -1,9 +1,11 @@
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 /**
@@ -16,13 +18,51 @@ public class MainApp extends Application {
         primaryStage.setTitle("Table Filtering");
 
         try {
-            FXMLLoader loader = new FXMLLoader(MainApp.class.getResource("PersonTable.fxml"));
-            AnchorPane page = (AnchorPane) loader.load();
-            Scene scene = new Scene(page);
+            FilterTable<Person> filterTable = new FilterTable<>();
+
+            TableColumn<Person,String> firstNameColumn = new TableColumn<>("Vorname");
+            TableColumn<Person,String> lastNameColumn = new TableColumn<>("Nachname");
+
+            firstNameColumn.setCellValueFactory(
+                    new PropertyValueFactory<Person, String>("firstName"));
+            lastNameColumn.setCellValueFactory(
+                    new PropertyValueFactory<Person, String>("lastName"));
+
+            filterTable.getTable().getColumns().addAll(firstNameColumn,lastNameColumn);
+
+            List<Person> data = new ArrayList<>();
+            data.add(new Person("Hans", "Muster"));
+            data.add(new Person("Ruth", "Mueller"));
+            data.add(new Person("Heinz", "Kurz"));
+            data.add(new Person("Cornelia", "Meier"));
+            data.add(new Person("Werner", "Meyer"));
+            data.add(new Person("Lydia", "Kunz"));
+            data.add(new Person("Anna", "Best"));
+            data.add(new Person("Stefan", "Meier"));
+            data.add(new Person("Martin", "Mueller"));
+            data.add(new Person("Ralph", "Mueller"));
+            data.add(new Person("Heinz", "Mayer"));
+
+            filterTable.addData(data);
+
+            filterTable.addFilterProperty(new Filterable<Person>() {
+                @Override
+                public String getFilterString(Person item) {
+                    return item.getFirstName();
+                }
+            });
+            filterTable.addFilterProperty(new Filterable<Person>() {
+                @Override
+                public String getFilterString(Person item) {
+                    return item.getLastName();
+                }
+            });
+
+            Scene scene = new Scene(filterTable);
             primaryStage.setScene(scene);
             primaryStage.show();
         } catch (IOException e) {
-            System.err.println("Error loading PersonTable.fxml!");
+            System.err.println("Error loading FilterTable.fxml!");
             e.printStackTrace();
         }
     }
