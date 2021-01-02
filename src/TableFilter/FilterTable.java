@@ -1,13 +1,10 @@
 package TableFilter;
 
-import TableFilter.FilterTableController;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -34,12 +31,11 @@ public class FilterTable<S> extends BorderPane {
      */
     public FilterTable() throws IOException {
 
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        Parent parent = fxmlLoader.load(getClass().getResource("filterTable.fxml").openStream());
+        TableLoader tableLoader = new TableLoader();
 
-        setCenter(parent);
+        setCenter(tableLoader.parent);
 
-        FilterTableController filterTableController = fxmlLoader.getController();
+        FilterTableController filterTableController = tableLoader.fxmlLoader.getController();
 
         filterTableController.tablePane.setCenter(table);
 
