@@ -1,8 +1,8 @@
-# FilterTable
+# TableFilter
 
 contains code from https://code.makery.ch/blog/javafx-2-tableview-filter/
 
-### create a table that can be searched
+## create a table that can be searched
 
 - create table
 ````java
@@ -55,3 +55,9 @@ filterTable.addFilterProperty(new Filterable<Person>() {
     }
 });
 ````
+
+### example
+
+see src/MainApp
+
+![image that shows the GUI of MainApp](https://raw.githubusercontent.com/stefan-schlagh/javafx_TableFilter/master/TableFilter.png)
