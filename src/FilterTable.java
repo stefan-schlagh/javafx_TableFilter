@@ -25,6 +25,10 @@ public class FilterTable<S> extends BorderPane {
 
     private final List<Filterable> filterableList = new ArrayList<>();
 
+    /**
+     * create the filterTable
+     * @throws IOException if the fxml file could not be loaded
+     */
     public FilterTable() throws IOException {
 
         FXMLLoader fxmlLoader = new FXMLLoader();
@@ -60,21 +64,42 @@ public class FilterTable<S> extends BorderPane {
                 updateFilteredData();
             }
         });
-
     }
-
+    /**
+     * returns the Table. Use this to add your columns
+     * @return table
+     */
     public TableView<S> getTable() {
         return table;
     }
-
+    /**
+     * add a list of data to the table.
+     * @param list an instance of java.util.List
+     */
     public void addData(List<S> list){
         masterData.addAll(list);
     }
-
+    /**
+     * add an item to the table
+     * @param item the item
+     */
     public void addData(S item){
         masterData.add(item);
     }
-
+    /**
+     * add a list of data to the table.
+     * @param list an instance of java.util.List
+     */
+    public void removeData(List<S> list){
+        masterData.removeAll(list);
+    }
+    /**
+     * add an item to the table
+     * @param item the item
+     */
+    public void removeData(S item){
+        masterData.remove(item);
+    }
     /**
      * Updates the filteredData to contain all data from the masterData that
      * matches the current filter.
@@ -91,7 +116,6 @@ public class FilterTable<S> extends BorderPane {
         // Must re-sort table after items changed
         reapplyTableSortOrder();
     }
-
     /**
      * Returns true if the item matches the current filter. Lower/Upper case
      * is ignored.

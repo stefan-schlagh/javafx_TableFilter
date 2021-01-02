@@ -41,7 +41,6 @@ public class MainApp extends Application {
             data.add(new Person("Stefan", "Meier"));
             data.add(new Person("Martin", "Mueller"));
             data.add(new Person("Ralph", "Mueller"));
-            data.add(new Person("Heinz", "Mayer"));
 
             filterTable.addData(data);
 
