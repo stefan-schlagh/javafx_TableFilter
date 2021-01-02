@@ -2,6 +2,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import TableFilter.FilterTable;
+import TableFilter.Filterable;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
@@ -61,7 +63,7 @@ public class MainApp extends Application {
             primaryStage.setScene(scene);
             primaryStage.show();
         } catch (IOException e) {
-            System.err.println("Error loading FilterTable.fxml!");
+            System.err.println("Error loading TableFilter.FilterTable.fxml!");
             e.printStackTrace();
         }
     }

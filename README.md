@@ -6,7 +6,7 @@ contains code from https://code.makery.ch/blog/javafx-2-tableview-filter/
 
 - create table
 ````java
-FilterTable<Person> filterTable = new FilterTable<>();
+TableFilter.FilterTable<Person> filterTable = new TableFilter.FilterTable<>();
 
 // create columns
 TableColumn<Person,String> firstNameColumn = new TableColumn<>("Vorname");
@@ -42,13 +42,13 @@ filterTable.addData(data);
 
 - add filterable properties
 ````java
-filterTable.addFilterProperty(new Filterable<Person>() {
+filterTable.addFilterProperty(new TableFilter.Filterable<Person>() {
     @Override
     public String getFilterString(Person item) {
         return item.getFirstName();
     }
 });
-filterTable.addFilterProperty(new Filterable<Person>() {
+filterTable.addFilterProperty(new TableFilter.Filterable<Person>() {
     @Override
     public String getFilterString(Person item) {
         return item.getLastName();
