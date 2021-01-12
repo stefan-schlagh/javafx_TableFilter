@@ -23,7 +23,7 @@ public class FilterTable<S> extends BorderPane {
 
     private final TextField filterField;
 
-    private final List<Filterable> filterableList = new ArrayList<>();
+    private final List<Filterable<S>> filterableList = new ArrayList<>();
 
     /**
      * create the filterTable
@@ -152,8 +152,18 @@ public class FilterTable<S> extends BorderPane {
         table.getSortOrder().clear();
         table.getSortOrder().addAll(sortOrder);
     }
-
+    /**
+     * add a filterable property.
+     * @param f the filterable
+     */
     public void addFilterProperty(Filterable<S> f){
         filterableList.add(f);
+    }
+    /**
+     * get the filterable list. can be modified
+     * @return the filterable list
+     */
+    public List<Filterable<S>> getFilterableList() {
+        return filterableList;
     }
 }
