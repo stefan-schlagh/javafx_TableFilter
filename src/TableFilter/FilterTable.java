@@ -100,6 +100,13 @@ public class FilterTable<S> extends BorderPane {
         masterData.remove(item);
     }
     /**
+     * remove all data
+     */
+    public void removeAllData(){
+        List<S> dataClone = FXCollections.observableList(masterData);
+        masterData.removeAll(dataClone);
+    }
+    /**
      * Updates the filteredData to contain all data from the masterData that
      * matches the current filter.
      */
