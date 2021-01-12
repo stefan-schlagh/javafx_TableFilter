@@ -20,7 +20,7 @@ public class MainApp extends Application {
         primaryStage.setTitle("Table Filtering");
 
         try {
-            FilterTable<Person> filterTable = new FilterTable<>();
+            FilterTable<Person> filterTable = new FilterTable<>("Filter persons:");
 
             TableColumn<Person,String> firstNameColumn = new TableColumn<>("Vorname");
             TableColumn<Person,String> lastNameColumn = new TableColumn<>("Nachname");
