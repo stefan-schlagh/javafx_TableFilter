@@ -46,13 +46,13 @@ public class MainApp extends Application {
 
             filterTable.addData(data);
 
-            filterTable.addFilterProperty(new Filterable<Person>() {
+            filterTable.getFilterableList().add(new Filterable<Person>() {
                 @Override
                 public String getFilterString(Person item) {
                     return item.getFirstName();
                 }
             });
-            filterTable.addFilterProperty(new Filterable<Person>() {
+            filterTable.getFilterableList().add(new Filterable<Person>() {
                 @Override
                 public String getFilterString(Person item) {
                     return item.getLastName();
