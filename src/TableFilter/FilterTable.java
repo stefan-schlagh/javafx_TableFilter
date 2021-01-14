@@ -23,8 +23,9 @@ public class FilterTable<S> extends BorderPane {
 
     private final TextField filterField;
 
-    private final List<Filterable> filterableList = new ArrayList<>();
+    private final List<Filterable<S>> filterableList = new ArrayList<>();
 
+    private FilterTableController filterTableController;
     /**
      * create the filterTable
      * @throws IOException if the fxml file could not be loaded
@@ -35,7 +36,7 @@ public class FilterTable<S> extends BorderPane {
 
         setCenter(tableLoader.parent);
 
-        FilterTableController filterTableController = tableLoader.fxmlLoader.getController();
+        filterTableController = tableLoader.fxmlLoader.getController();
 
         filterTableController.tablePane.setCenter(table);
 
@@ -63,6 +64,16 @@ public class FilterTable<S> extends BorderPane {
                 updateFilteredData();
             }
         });
+    }
+    /**
+     * create the filterTable
+     * @param prompt will appear next to the search text field
+     * @throws IOException if the fxml file could not be loaded
+     */
+    public FilterTable(String prompt) throws IOException {
+        this();
+        // set prompt text
+        filterTableController.setLabelSearchFieldText(prompt);
     }
     /**
      * returns the Table. Use this to add your columns
@@ -98,6 +109,13 @@ public class FilterTable<S> extends BorderPane {
      */
     public void removeData(S item){
         masterData.remove(item);
+    }
+    /**
+     * remove all data
+     */
+    public void removeAllData(){
+        List<S> dataClone = FXCollections.observableList(masterData);
+        masterData.removeAll(dataClone);
     }
     /**
      * Updates the filteredData to contain all data from the masterData that
@@ -145,8 +163,26 @@ public class FilterTable<S> extends BorderPane {
         table.getSortOrder().clear();
         table.getSortOrder().addAll(sortOrder);
     }
-
+    /**
+     * add a filterable property.
+     * @param f the filterable
+     */
     public void addFilterProperty(Filterable<S> f){
         filterableList.add(f);
+    }
+    /**
+     * get the filterable list. can be modified
+     * @return the filterable list
+     */
+    public List<Filterable<S>> getFilterableList() {
+        return filterableList;
+    }
+    /**
+     * set the prompt text
+     * @param prompt will appear next to the search text field
+     */
+    public void setPrompt(String prompt){
+        // set prompt text
+        filterTableController.setLabelSearchFieldText(prompt);
     }
 }
