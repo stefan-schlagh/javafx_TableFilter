@@ -5,10 +5,12 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import javafx.scene.Node;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -184,5 +186,12 @@ public class FilterTable<S> extends BorderPane {
     public void setPrompt(String prompt){
         // set prompt text
         filterTableController.setLabelSearchFieldText(prompt);
+    }
+    /**
+     * return the nodes in the searchBox
+     * @return a list of the nodes in the searchBox
+     */
+    public List<Node> getSearchBoxChildren(){
+        return filterTableController.getSearchBox().getChildren();
     }
 }
